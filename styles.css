@@ -474,6 +474,7 @@ body {
   cursor: pointer;
   user-select: none;
   transition: var(--transition);
+  margin-bottom: 1rem;
 
   &:hover {
     background: var(--color-surface-elevated);
@@ -521,20 +522,19 @@ body {
 .progressions-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height var(--transition-slow) ease;
+  transition: max-height var(--transition-slow) ease,
+    opacity 300ms ease 100ms;
   opacity: 0;
 
   &.expanded {
     max-height: 2000px;
     opacity: 1;
-    transition: max-height var(--transition-slow) ease,
-      opacity 300ms ease 100ms;
   }
 }
 
 .progressions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
   gap: var(--space);
   padding: var(--space);
   padding-top: 0;
@@ -559,13 +559,6 @@ body {
 
   @container (width <=767px) {
     padding: var(--space-sm);
-  }
-
-  /* Staggered animation for cards */
-  @for $i from 1 through 6 {
-    .progressions-content.expanded &:nth-child(#{$i}) {
-      animation-delay: #{0.05 + ($i * 0.05)}s;
-    }
   }
 
   &:hover {
@@ -627,6 +620,7 @@ body {
   line-height: 1.5;
   color: var(--color-text-secondary);
   margin-block-end: var(--space);
+  min-height: 69px;
 }
 
 .progression-examples {

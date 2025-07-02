@@ -329,6 +329,8 @@ const scaleTableBody = document.getElementById('scaleTableBody');
 const majorBtn = document.getElementById('majorBtn');
 const minorBtn = document.getElementById('minorBtn');
 const noteButtons = document.querySelectorAll('.note-btn');
+const progressionsBtn = document.getElementById('progressionsToggle');
+const progressionsContent = document.getElementById('progressionsContent');
 
 // Initialize the app
 function init() {
@@ -366,6 +368,11 @@ function setupEventListeners() {
             }
         });
     });
+
+    // Progressions button
+    progressionsBtn.addEventListener('click', () => {
+        updateProgressionsContent();
+    })
 }
 
 // Update toggle button states
@@ -379,6 +386,12 @@ function updateNoteButtons() {
     noteButtons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.note === currentNote);
     });
+}
+
+// Update progression card state
+function updateProgressionsContent() {
+    console.log('clicked')
+    progressionsContent.classList.toggle('expanded');
 }
 
 // Update the main display
