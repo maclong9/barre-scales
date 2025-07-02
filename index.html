@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barre Scales Chart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Barre Scales Chart</h1>
+      <p class="subtitle">Interactive guide to major and minor barre chord positions</p>
+    </header>
+
+    <main class="main-content">
+      <div class="scale-display">
+        <div class="scale-header">
+          <h2 class="scale-title" id="scaleTitle">C Major Scale</h2>
+          <div class="scale-info" id="scaleInfo">No sharps or flats</div>
+        </div>
+
+        <div class="scale-table-container">
+          <table class="scale-table">
+            <thead>
+              <tr>
+                <th>Degree</th>
+                <th>Note</th>
+                <th>Root</th>
+                <th>Chord Shape</th>
+                <th>Chord Quality</th>
+              </tr>
+            </thead>
+            <tbody id="scaleTableBody">
+              <!-- Scale data will be populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="controls">
+          <div class="control-group">
+            <label class="control-label">Scale Type</label>
+            <div class="toggle-container">
+              <button class="toggle-btn active" id="majorBtn">Major</button>
+              <button class="toggle-btn" id="minorBtn">Minor</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Root Note</label>
+            <div class="note-buttons">
+              <button class="note-btn active" data-note="C">C</button>
+              <button class="note-btn" data-note="C#">C♯</button>
+              <button class="note-btn" data-note="D">D</button>
+              <button class="note-btn" data-note="D#">D♯</button>
+              <button class="note-btn" data-note="E">E</button>
+              <button class="note-btn" data-note="F">F</button>
+              <button class="note-btn" data-note="F#">F♯</button>
+              <button class="note-btn" data-note="G">G</button>
+              <button class="note-btn" data-note="G#">G♯</button>
+              <button class="note-btn" data-note="A">A</button>
+              <button class="note-btn" data-note="A#">A♯</button>
+              <button class="note-btn" data-note="B">B</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="usage-notes">
+      <h3>Usage Notes</h3>
+      <ul>
+        <li><strong>E-shape chords</strong> use the 6th string as the root</li>
+        <li><strong>A-shape chords</strong> use the 5th string as the root</li>
+        <li>Higher fret numbers move you higher in pitch</li>
+        <li>Practice chord quality changes to train your ear</li>
+      </ul>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
