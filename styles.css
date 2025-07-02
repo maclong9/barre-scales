@@ -1,87 +1,63 @@
 /* CSS Custom Properties */
 :root {
   /* Color system */
-  --color-background: hsl(210, 11%, 3%);
-  --color-surface: hsl(210, 11%, 6%);
-  --color-surface-elevated: hsl(210, 11%, 9%);
-  --color-border: hsl(210, 11%, 15%);
-  --color-border-hover: hsl(210, 11%, 20%);
-  --color-text-primary: hsl(210, 11%, 96%);
-  --color-text-secondary: hsl(210, 11%, 83%);
-  --color-text-muted: hsl(210, 11%, 71%);
+  --color-background: hsl(210 11% 3%);
+  --color-surface: hsl(210 11% 6%);
+  --color-surface-elevated: hsl(210 11% 9%);
+  --color-border: hsl(210 11% 15%);
+  --color-border-hover: hsl(210 11% 20%);
+  --color-text-primary: hsl(210 11% 96%);
+  --color-text-secondary: hsl(210 11% 83%);
+  --color-text-muted: hsl(210 11% 71%);
 
   /* Chord quality colors */
-  --color-major: hsl(142, 76%, 36%);
-  --color-minor: hsl(221, 83%, 53%);
-  --color-diminished: hsl(0, 84%, 60%);
+  --color-major: hsl(142 76% 36%);
+  --color-minor: hsl(221 83% 53%);
+  --color-diminished: hsl(0 84% 60%);
 
   /* Synesthetic note colors */
-  --note-c: #dc2626;
-  --note-c-dark: #b91c1c;
-  --note-cs: #7c3aed;
-  --note-cs-dark: #6d28d9;
-  --note-d: #ea580c;
-  --note-d-dark: #c2410c;
-  --note-ds: #0891b2;
-  --note-ds-dark: #0e7490;
-  --note-e: #eab308;
-  --note-e-dark: #ca8a04;
-  --note-f: #16a34a;
-  --note-f-dark: #15803d;
-  --note-fs: #db2777;
-  --note-fs-dark: #be185d;
-  --note-g: #f97316;
-  --note-g-dark: #ea580c;
-  --note-gs: #8b5cf6;
-  --note-gs-dark: #7c3aed;
-  --note-a: #06b6d4;
-  --note-a-dark: #0891b2;
-  --note-as: #84cc16;
-  --note-as-dark: #65a30d;
-  --note-b: #3b82f6;
-  --note-b-dark: #2563eb;
+  --note-colors: {
+    C: #dc2626, C#: #7c3aed, D: #ea580c, D#: #0891b2,
+      E: #eab308, F: #16a34a, F#: #db2777, G: #f97316,
+      G#: #8b5cf6, A: #06b6d4, A#: #84cc16, B: #3b82f6
+  }
 
-  /* Spacing system */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 2.5rem;
-  --space-3xl: 3rem;
+  ;
 
-  /* Compact spacing for better screen fit */
-  --space-compact: 1rem;
-  --space-compact-lg: 1.5rem;
+  /* Spacing system using logical sizing */
+  --space: clamp(1rem, 2vw, 2rem);
+  --space-xs: calc(var(--space) * 0.5);
+  --space-sm: calc(var(--space) * 0.75);
+  --space-lg: calc(var(--space) * 1.5);
+  --space-xl: calc(var(--space) * 2);
 
-  /* Border radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
+  /* Typography scale */
+  --font-size: clamp(1rem, 2.5vw, 1.125rem);
+  --font-size-sm: calc(var(--font-size) * 0.875);
+  --font-size-lg: calc(var(--font-size) * 1.25);
+  --font-size-xl: calc(var(--font-size) * 2);
 
-  /* Typography */
-  --font-size-xs: 0.875rem;
-  --font-size-sm: 0.95rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.1rem;
-  --font-size-xl: 2rem;
-  --font-size-2xl: 2.5rem;
-
-  /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.3);
+  /* Design tokens */
+  --radius: 0.5rem;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 8px 16px -4px rgb(0 0 0 / 0.4);
+  --transition: 200ms ease;
+  --transition-slow: 400ms ease;
 
-  /* Transitions */
-  --transition-fast: all 0.2s ease;
-  --transition-medium: all 0.3s ease;
-  --transition-slow: all 0.4s ease;
+  @media (prefers-color-scheme: light) {
+    --color-background: hsl(210 11% 98%);
+    --color-surface: hsl(210 11% 100%);
+    --color-text-primary: hsl(210 11% 8%);
+  }
 }
 
 /* Reset and base styles */
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -92,64 +68,92 @@ body {
   min-height: 100vh;
 }
 
+/* Layout */
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin-inline: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: var(--space-xs);
+
+  @container (width > 768px) {
+    padding: var(--space);
+  }
 }
 
 /* Header */
 .header {
   text-align: center;
-  margin-bottom: var(--space-2xs);
+  margin-block-end: var(--space);
+  animation: fadeInDown 0.6s ease;
 
   .title {
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .subtitle {
-    font-size: var(--font-size-base);
-    /* Smaller subtitle */
+    font-size: var(--font-size);
     color: var(--color-text-muted);
   }
 }
 
 /* Main content */
 .main-content {
-  margin: var(--space-md);
+  margin: var(--space);
 }
 
-.scale-display {
-  padding: var(--space-md);
+/* Card-like components */
+.scale-display,
+.controls,
+.progressions-section {
+  padding: var(--space);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-medium);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  margin-block-end: var(--space);
 
   &:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-hover);
   }
 }
 
+.scale-display {
+  animation: scaleIn 0.6s ease 0.2s both;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+  animation: slideInLeft 0.6s ease 0.4s both;
+
+  @container (width > 768px) {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+  }
+}
+
+/* Scale header */
 .scale-header {
   display: flex;
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  margin-bottom: var(--space-compact);
+  margin-block-end: var(--space);
 
   .scale-title {
     font-size: var(--font-size-lg);
-    /* Smaller scale title */
     font-weight: 600;
     color: var(--color-text-primary);
-    transition: var(--transition-fast);
+    transition: var(--transition);
 
     &:hover {
       color: var(--color-text-secondary);
@@ -158,19 +162,16 @@ body {
 
   .scale-info {
     font-size: var(--font-size-sm);
-    /* Smaller scale info */
     color: var(--color-text-muted);
     font-style: italic;
-    transition: var(--transition-fast);
   }
 }
 
 /* Table */
 .scale-table-container {
   overflow-x: auto;
-  margin-bottom: var(--space-compact);
+  margin-block-end: var(--space);
   min-height: 300px;
-  /* Reduced height for better fit */
   position: relative;
 }
 
@@ -178,17 +179,19 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: var(--color-surface-elevated);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   overflow: hidden;
+
+  :is(th, td) {
+    padding: var(--space-sm);
+    text-align: left;
+    font-size: var(--font-size-sm);
+  }
 
   th {
     background: var(--color-border);
     color: var(--color-text-primary);
-    padding: var(--space-sm);
-    /* Reduced padding */
-    text-align: left;
     font-weight: 600;
-    font-size: var(--font-size-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 
@@ -196,62 +199,59 @@ body {
       min-width: 60px;
     }
 
-    /* Degree */
     &:nth-child(2) {
       min-width: 50px;
     }
 
-    /* Note */
     &:nth-child(3) {
       min-width: 80px;
     }
 
-    /* Root - accommodate E12/E0 */
     &:nth-child(4) {
       min-width: 100px;
     }
 
-    /* Chord Shape */
     &:nth-child(5) {
       min-width: 100px;
     }
-
-    /* Chord Quality */
   }
 
   td {
-    padding: var(--space-sm);
-    /* Reduced padding */
     border-top: 1px solid var(--color-border);
-    font-size: var(--font-size-xs);
-    /* Smaller text */
   }
 
   tbody tr {
-    transition: var(--transition-fast);
+    transition: var(--transition);
 
     &:hover {
       background: var(--color-surface);
       transform: translateX(4px);
     }
+
+    &.slide-out {
+      animation: slideOutLeft 0.3s ease forwards;
+    }
+
+    &.slide-in {
+      animation: slideInRight 0.3s ease forwards;
+    }
   }
 }
 
 /* Table cell styles */
-.degree-cell {
+.degree-cell,
+.position-cell {
   font-weight: 600;
   color: var(--color-text-primary);
-}
-
-.note-cell {
-  font-weight: 600;
-  font-size: var(--font-size-base);
-  /* Smaller note cell text */
 }
 
 .position-cell {
   font-family: 'Courier New', monospace;
-  color: var(--color-text-primary);
+}
+
+.note-cell {
+  font-weight: 600;
+  font-size: var(--font-size);
 }
 
 .chord-shape-cell {
@@ -274,40 +274,30 @@ body {
   }
 }
 
-/* Controls */
-.controls {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-compact);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-compact);
-  margin-bottom: var(--space-compact);
-  transition: var(--transition-medium);
-
-  &:hover {
-    border-color: var(--color-border-hover);
-    box-shadow: var(--shadow-sm);
-  }
-}
-
+/* Control groups */
 .control-group {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  /* Reduced gap */
+
+  @container (width > 768px) {
+    flex: 1;
+
+    &:first-child {
+      max-width: 300px;
+    }
+  }
 }
 
 .control-label {
   font-weight: 600;
   color: var(--color-text-primary);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* Toggle buttons */
+/* Buttons */
 .toggle-container {
   display: flex;
   gap: var(--space-xs);
@@ -315,15 +305,15 @@ body {
 
 .toggle-btn {
   flex: 1;
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-sm) var(--space);
   border: 1px solid var(--color-border);
   background: var(--color-surface-elevated);
   color: var(--color-text-muted);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition);
 
   &:hover:not(.active) {
     background: var(--color-surface);
@@ -335,6 +325,10 @@ body {
     color: var(--color-surface-elevated);
     border-color: var(--color-text-primary);
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 /* Note buttons */
@@ -343,208 +337,307 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: var(--space-xs);
 
-  /* Staggered animation for note buttons */
+  @container (width > 768px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @container (width <=767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Staggered animation */
   .note-btn {
     animation: fadeInUp 0.4s ease forwards;
     opacity: 0;
     transform: translateY(20px);
-  }
 
-  .note-btn:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-
-  .note-btn:nth-child(2) {
-    animation-delay: 0.15s;
-  }
-
-  .note-btn:nth-child(3) {
-    animation-delay: 0.2s;
-  }
-
-  .note-btn:nth-child(4) {
-    animation-delay: 0.25s;
-  }
-
-  .note-btn:nth-child(5) {
-    animation-delay: 0.3s;
-  }
-
-  .note-btn:nth-child(6) {
-    animation-delay: 0.35s;
-  }
-
-  .note-btn:nth-child(7) {
-    animation-delay: 0.4s;
-  }
-
-  .note-btn:nth-child(8) {
-    animation-delay: 0.45s;
-  }
-
-  .note-btn:nth-child(9) {
-    animation-delay: 0.5s;
-  }
-
-  .note-btn:nth-child(10) {
-    animation-delay: 0.55s;
-  }
-
-  .note-btn:nth-child(11) {
-    animation-delay: 0.6s;
-  }
-
-  .note-btn:nth-child(12) {
-    animation-delay: 0.65s;
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.05 + ($i * 0.05)}s;
+      }
+    }
   }
 }
 
 .note-btn {
   padding: var(--space-sm);
   border: 2px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-base);
+  border-radius: var(--radius);
+  font-size: var(--font-size);
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-medium);
+  transition: var(--transition);
   background: var(--color-surface-elevated);
   color: var(--color-text-muted);
   position: relative;
   overflow: hidden;
 
-  /* Base hover effects for all buttons */
   &:hover:not(.active) {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     border-color: var(--color-border-hover);
   }
 
-  /* Active state */
   &.active {
     transform: scale(1.05);
     box-shadow: var(--shadow-lg);
   }
 
-  /* Color-specific hover and active states */
-  &[data-note="C"] {
+  &:active {
+    transform: scale(0.95);
+  }
 
-    &:hover,
-    &.active {
-      border-color: var(--note-c);
-      background: linear-gradient(135deg, var(--note-c), var(--note-c-dark));
-      color: white;
+  /* Note-specific colors using attribute selectors */
+  &[data-note="C"]:is(:hover, .active) {
+    border-color: #dc2626;
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+  }
+
+  &[data-note="C#"]:is(:hover, .active) {
+    border-color: #7c3aed;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: white;
+  }
+
+  &[data-note="D"]:is(:hover, .active) {
+    border-color: #ea580c;
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    color: white;
+  }
+
+  &[data-note="D#"]:is(:hover, .active) {
+    border-color: #0891b2;
+    background: linear-gradient(135deg, #0891b2, #0e7490);
+    color: white;
+  }
+
+  &[data-note="E"]:is(:hover, .active) {
+    border-color: #eab308;
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: var(--color-surface-elevated);
+  }
+
+  &[data-note="F"]:is(:hover, .active) {
+    border-color: #16a34a;
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+  }
+
+  &[data-note="F#"]:is(:hover, .active) {
+    border-color: #db2777;
+    background: linear-gradient(135deg, #db2777, #be185d);
+    color: white;
+  }
+
+  &[data-note="G"]:is(:hover, .active) {
+    border-color: #f97316;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+  }
+
+  &[data-note="G#"]:is(:hover, .active) {
+    border-color: #8b5cf6;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+  }
+
+  &[data-note="A"]:is(:hover, .active) {
+    border-color: #06b6d4;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+  }
+
+  &[data-note="A#"]:is(:hover, .active) {
+    border-color: #84cc16;
+    background: linear-gradient(135deg, #84cc16, #65a30d);
+    color: var(--color-surface-elevated);
+  }
+
+  &[data-note="B"]:is(:hover, .active) {
+    border-color: #3b82f6;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+  }
+}
+
+/* Progressions section */
+.progressions-section {
+  overflow: hidden;
+}
+
+.progressions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space);
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--color-surface-elevated);
+  }
+}
+
+.progressions-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.progressions-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .toggle-icon {
+    font-size: var(--font-size-sm);
+    transition: transform var(--transition);
+  }
+
+  &.expanded {
+    .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .toggle-text::after {
+      content: " Patterns";
+    }
+  }
+}
+
+.progressions-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow) ease;
+  opacity: 0;
+
+  &.expanded {
+    max-height: 2000px;
+    opacity: 1;
+    transition: max-height var(--transition-slow) ease,
+      opacity 300ms ease 100ms;
+  }
+}
+
+.progressions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space);
+  padding: var(--space);
+  padding-top: 0;
+
+  @container (width <=767px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+}
+
+.progression-card {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+
+  @container (width <=767px) {
+    padding: var(--space-sm);
+  }
+
+  /* Staggered animation for cards */
+  @for $i from 1 through 6 {
+    .progressions-content.expanded &:nth-child(#{$i}) {
+      animation-delay: #{0.05 + ($i * 0.05)}s;
     }
   }
 
-  &[data-note="C#"] {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-hover);
 
-    &:hover,
-    &.active {
-      border-color: var(--note-cs);
-      background: linear-gradient(135deg, var(--note-cs), var(--note-cs-dark));
-      color: white;
+    &::before {
+      opacity: 1;
     }
   }
 
-  &[data-note="D"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-d);
-      background: linear-gradient(135deg, var(--note-d), var(--note-d-dark));
-      color: white;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-major), var(--color-minor));
+    opacity: 0;
+    transition: opacity var(--transition);
   }
+}
 
-  &[data-note="D#"] {
+.progression-name {
+  font-size: var(--font-size);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
 
-    &:hover,
-    &.active {
-      border-color: var(--note-ds);
-      background: linear-gradient(135deg, var(--note-ds), var(--note-ds-dark));
-      color: white;
-    }
+.progression-formula {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  padding: var(--space-sm);
+  border-radius: var(--radius);
+  text-align: center;
+  margin-block-end: var(--space-xs);
+  border: 1px solid var(--color-border);
+
+  @container (width <=767px) {
+    font-size: var(--font-size);
   }
+}
 
-  &[data-note="E"] {
+.progression-degrees {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-block-end: var(--space);
+  font-style: italic;
+}
 
-    &:hover,
-    &.active {
-      border-color: var(--note-e);
-      background: linear-gradient(135deg, var(--note-e), var(--note-e-dark));
-      color: var(--color-surface-elevated);
-    }
-  }
+.progression-description {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin-block-end: var(--space);
+}
 
-  &[data-note="F"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-f);
-      background: linear-gradient(135deg, var(--note-f), var(--note-f-dark));
-      color: white;
-    }
-  }
-
-  &[data-note="F#"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-fs);
-      background: linear-gradient(135deg, var(--note-fs), var(--note-fs-dark));
-      color: white;
-    }
-  }
-
-  &[data-note="G"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-g);
-      background: linear-gradient(135deg, var(--note-g), var(--note-g-dark));
-      color: white;
-    }
-  }
-
-  &[data-note="G#"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-gs);
-      background: linear-gradient(135deg, var(--note-gs), var(--note-gs-dark));
-      color: white;
-    }
-  }
-
-  &[data-note="A"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-a);
-      background: linear-gradient(135deg, var(--note-a), var(--note-a-dark));
-      color: white;
-    }
-  }
-
-  &[data-note="A#"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-as);
-      background: linear-gradient(135deg, var(--note-as), var(--note-as-dark));
-      color: var(--color-surface-elevated);
-    }
-  }
-
-  &[data-note="B"] {
-
-    &:hover,
-    &.active {
-      border-color: var(--note-b);
-      background: linear-gradient(135deg, var(--note-b), var(--note-b-dark));
-      color: white;
-    }
-  }
+.progression-examples {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
 }
 
 /* Footer */
@@ -555,93 +648,30 @@ footer {
   text-align: center;
 
   span {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
 
     a {
       color: inherit;
-      transition: color .3s ease-in-out;
+      transition: color 0.3s ease;
 
       &:hover {
-        color: var(--note-a-dark);
+        color: #0891b2;
       }
     }
   }
 }
 
-/* Responsive design */
-@media (min-width: 768px) {
-  .controls {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
-
-  .control-group {
-    flex: 1;
-
-    &:first-child {
-      max-width: 300px;
-    }
-  }
-
-  .note-buttons {
-    grid-template-columns: repeat(12, 1fr);
-  }
+/* Enhanced selectors */
+.controls:has(.toggle-btn.active) {
+  border-color: var(--color-border-hover);
 }
 
-@media (max-width: 767px) {
-  .container {
-    padding: var(--space-xs);
-  }
-
-  .header .title {
-    font-size: var(--font-size-xl);
-  }
-
-  .scale-display {
-    padding: var(--space-md);
-  }
-
-  .scale-table {
-
-    th,
-    td {
-      padding: var(--space-sm);
-      font-size: var(--font-size-xs);
-    }
-  }
-
-  .note-buttons {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.note-buttons:has(.note-btn.active) {
+  gap: var(--space-sm);
 }
 
-/* Advanced selectors */
-@supports (selector(:has(*))) {
-
-  /* Enhanced styles for containers with active elements */
-  .controls:has(.toggle-btn.active) {
-    border-color: var(--color-border-hover);
-  }
-
-  .note-buttons:has(.note-btn.active) {
-    gap: var(--space-sm);
-  }
-}
-
-/* Color scheme preferences */
-@media (prefers-color-scheme: light) {
-
-  /* Override for users who prefer light mode (future enhancement) */
-  :root {
-    --color-background: hsl(210, 11%, 98%);
-    --color-surface: hsl(210, 11%, 100%);
-    --color-text-primary: hsl(210, 11%, 8%);
-  }
-}
-
-/* Keyframe animations */
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -714,115 +744,18 @@ footer {
   }
 }
 
-/* Page load animations */
-.header {
-  animation: fadeInDown 0.6s ease forwards;
-}
-
-.scale-display {
-  animation: scaleIn 0.6s ease forwards 0.2s;
-  opacity: 0;
-}
-
-.controls {
-  animation: slideInLeft 0.6s ease forwards 0.4s;
-  opacity: 0;
-}
-
-.usage-notes {
-  animation: fadeInUp 0.6s ease forwards 0.6s;
-  opacity: 0;
-}
-
-/* Table row animations */
-.scale-table tbody tr {
-  transition: var(--transition-fast);
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scale-table tbody tr.slide-out {
-  animation: slideOutLeft 0.3s ease forwards;
-}
-
-.scale-table tbody tr.slide-in {
-  animation: slideInRight 0.3s ease forwards;
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.scale-table tbody tr.slide-in:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(4) {
-  animation-delay: 0.25s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(5) {
-  animation-delay: 0.3s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(6) {
-  animation-delay: 0.35s;
-}
-
-.scale-table tbody tr.slide-in:nth-child(7) {
-  animation-delay: 0.4s;
-}
-
-/* Enhanced note button interactions */
-.note-btn {
-  &:active {
-    transform: scale(0.95);
-    transition: transform 0.1s ease;
-  }
-}
-
-/* Toggle button press animation */
-.toggle-btn {
-  &:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
-  }
-}
-
-/* Reduced motion preferences */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  * {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 
-  .note-btn:hover {
-    transform: none;
-  }
-
-  .note-btn.active {
-    transform: none;
-  }
-
-  .header,
-  .scale-display,
-  .controls,
-  .scale-table tbody tr,
-  .note-buttons .note-btn {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .scale-table tbody tr.slide-out,
-  .scale-table tbody tr.slide-in {
+  :is(.note-btn, .scale-table tbody tr, .progression-card) {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
