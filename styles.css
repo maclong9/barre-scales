@@ -557,6 +557,15 @@ footer {
   span {
     font-size: var(--font-size-xs);
     color: var(--color-text-muted);
+
+    a {
+      color: inherit;
+      transition: color .3s ease-in-out;
+
+      &:hover {
+        color: var(--note-a-dark);
+      }
+    }
   }
 }
 
