@@ -95,7 +95,6 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-compact);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -104,13 +103,13 @@ body {
 /* Header */
 .header {
   text-align: center;
-  margin-bottom: var(--space-compact);
+  margin-bottom: var(--space-2xs);
 
   .title {
     font-size: 2rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: var(--space-xs);
+    margin-bottom: 0;
   }
 
   .subtitle {
@@ -123,7 +122,7 @@ body {
 /* Main content */
 .main-content {
   flex: 1;
-  margin-bottom: var(--space-compact);
+  margin-bottom: var(--space-2xs);
 }
 
 .scale-display {
@@ -546,6 +545,18 @@ body {
       background: linear-gradient(135deg, var(--note-b), var(--note-b-dark));
       color: white;
     }
+  }
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  display: grid;
+  place-items: center;
+
+  span {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 }
 
