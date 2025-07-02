@@ -372,36 +372,57 @@ function setupEventListeners() {
     // Progressions button
     progressionsBtn.addEventListener('click', () => {
         updateProgressionsContent();
-    })
+    });
 }
 
 // Update toggle button states
 function updateToggleButtons() {
-    majorBtn.classList.toggle('active', currentMode === 'major');
-    minorBtn.classList.toggle('active', currentMode === 'minor');
+    const isMajorActive = currentMode === 'major';
+    const isMinorActive = currentMode === 'minor';
+    
+    majorBtn.classList.toggle('active', isMajorActive);
+    minorBtn.classList.toggle('active', isMinorActive);
+    
+    // Update ARIA attributes
+    majorBtn.setAttribute('aria-pressed', isMajorActive.toString());
+    minorBtn.setAttribute('aria-pressed', isMinorActive.toString());
 }
 
 // Update note button states
 function updateNoteButtons() {
     noteButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.note === currentNote);
+        const isActive = btn.dataset.note === currentNote;
+        btn.classList.toggle('active', isActive);
+        // Update ARIA attributes
+        btn.setAttribute('aria-pressed', isActive.toString());
     });
 }
 
 // Update progression card state
 function updateProgressionsContent() {
-    console.log('clicked')
+    const isExpanded = progressionsContent.classList.contains('expanded');
+    const toggleButton = document.querySelector('.progressions-toggle');
+    
     progressionsContent.classList.toggle('expanded');
+    
+    // Update ARIA attributes
+    if (toggleButton) {
+        toggleButton.setAttribute('aria-expanded', (!isExpanded).toString());
+        toggleButton.classList.toggle('expanded', !isExpanded);
+    }
+    
+    progressionsContent.setAttribute('aria-hidden', isExpanded.toString());
 }
 
 // Update the main display
 function updateDisplay() {
-    const scaleData = SCALES_DATA[currentMode][currentNote];
-    
-    if (!scaleData) {
-        console.error(`Scale data not found for ${currentNote} ${currentMode}`);
-        return;
-    }
+    try {
+        const scaleData = SCALES_DATA[currentMode]?.[currentNote];
+        
+        if (!scaleData) {
+            console.error(`Scale data not found for ${currentNote} ${currentMode}`);
+            return;
+        }
 
     // Update header with smooth fade-out/fade-in transition
     scaleTitle.style.opacity = '0';
@@ -433,33 +454,65 @@ function updateDisplay() {
         setTimeout(() => {
             populateNewRows(scaleData);
         }, 400); // Wait for slide-out animation to complete
-    } else {
-        // No existing rows, just populate immediately
-        populateNewRows(scaleData);
+        } else {
+            // No existing rows, just populate immediately
+            populateNewRows(scaleData);
+        }
+    } catch (error) {
+        console.error('Error updating display:', error);
     }
 }
 
 // Helper function to populate new table rows
 function populateNewRows(scaleData) {
-    scaleTableBody.innerHTML = '';
-    
-    scaleData.degrees.forEach((degree, index) => {
-        const row = document.createElement('tr');
+    try {
+        scaleTableBody.innerHTML = '';
         
-        row.innerHTML = `
-            <td class="degree-cell">${degree.degree}</td>
-            <td class="note-cell">${degree.note}</td>
-            <td class="position-cell">${degree.position}</td>
-            <td class="chord-shape-cell">${degree.shape}</td>
-            <td class="chord-quality-cell chord-quality-${degree.quality.toLowerCase()}">${degree.quality}</td>
-        `;
+        if (!scaleData?.degrees || !Array.isArray(scaleData.degrees)) {
+            console.warn('Invalid scale data provided');
+            return;
+        }
         
-        // Add slide-in class for animation
-        row.classList.add('slide-in');
-        
-        scaleTableBody.appendChild(row);
-    });
+        scaleData.degrees.forEach((degree, index) => {
+            if (!degree || typeof degree !== 'object') {
+                console.warn(`Invalid degree data at index ${index}`);
+                return;
+            }
+            
+            const row = document.createElement('tr');
+            
+            // Sanitize data to prevent XSS
+            const sanitizedDegree = {
+                degree: String(degree.degree || ''),
+                note: String(degree.note || ''),
+                position: String(degree.position || ''),
+                shape: String(degree.shape || ''),
+                quality: String(degree.quality || '')
+            };
+            
+            row.innerHTML = `
+                <td class="degree-cell">${sanitizedDegree.degree}</td>
+                <td class="note-cell">${sanitizedDegree.note}</td>
+                <td class="position-cell">${sanitizedDegree.position}</td>
+                <td class="chord-shape-cell">${sanitizedDegree.shape}</td>
+                <td class="chord-quality-cell chord-quality-${sanitizedDegree.quality.toLowerCase()}">${sanitizedDegree.quality}</td>
+            `;
+            
+            // Add slide-in class for animation
+            row.classList.add('slide-in');
+            
+            scaleTableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error populating table rows:', error);
+    }
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        init();
+    } catch (error) {
+        console.error('Failed to initialize application:', error);
+    }
+});
