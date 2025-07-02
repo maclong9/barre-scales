@@ -121,7 +121,7 @@ body {
 
 /* Main content */
 .main-content {
-  margin: var(--space-xs);
+  margin: var(--space-md);
 }
 
 .scale-display {
