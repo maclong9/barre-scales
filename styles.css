@@ -48,6 +48,7 @@
 
   /* Spacing system using logical sizing */
   --space: clamp(1.25rem, 2.5vw, 2rem);
+  --space-xxs: calc(var(--space) * 0.3);
   --space-xs: calc(var(--space) * 0.5);
   --space-sm: calc(var(--space) * 0.75);
   --space-md: calc(var(--space) * 1);
@@ -780,7 +781,7 @@ body {
   }
 
   .main-content {
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 4rem);
@@ -899,10 +900,10 @@ body {
 
 /* Main content */
 .main-content {
-  padding: var(--space-sm) 0;
+  padding: var(--space-xxs) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xxs);
 }
 
 /* Card-like components */
