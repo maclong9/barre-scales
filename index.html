@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive barre scales chart for guitar players to learn major and minor scales with chord progressions">
+  <meta name="description"
+    content="Interactive barre scales chart for guitar players to learn major and minor scales with chord progressions">
   <meta name="keywords" content="guitar, barre chords, scales, music theory, chord progressions">
   <meta name="author" content="Mac Long">
   <title>Barre Scales Chart - Interactive Guitar Scale Reference</title>
@@ -12,34 +13,178 @@
 </head>
 
 <body>
-  <div class="container">
-    <header class="header" role="banner">
-      <h1 class="title">Barre Scales Chart</h1>
-      <p class="subtitle">Interactive guide to major and minor barre chord positions</p>
-    </header>
-
-    <main class="main-content" role="main">
-      <div class="scale-display">
-        <div class="scale-header">
-          <h2 class="scale-title" id="scaleTitle">C Major Scale</h2>
-          <div class="scale-info" id="scaleInfo">No sharps or flats</div>
+  <div class="app-container">
+    <!-- Sidebar for chord progressions -->
+    <aside class="sidebar" id="sidebar" role="complementary" aria-label="Chord progressions">
+      <div class="sidebar-header">
+        <div class="sidebar-title-section">
+          <h3 class="sidebar-title">Chord Progressions</h3>
+          <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close sidebar">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="degree-color-key">
+          <h4 class="color-key-title">Selection Order</h4>
+          <div class="color-key-grid">
+            <div class="color-key-item" data-degree="0">
+              <span class="color-indicator degree-1">
+                <span class="order-number" style="display: none;">1</span>
+              </span>
+              <span class="degree-label">1st</span>
+            </div>
+            <div class="color-key-item" data-degree="1">
+              <span class="color-indicator degree-2">
+                <span class="order-number" style="display: none;">2</span>
+              </span>
+              <span class="degree-label">2nd</span>
+            </div>
+            <div class="color-key-item" data-degree="2">
+              <span class="color-indicator degree-3">
+                <span class="order-number" style="display: none;">3</span>
+              </span>
+              <span class="degree-label">3rd</span>
+            </div>
+            <div class="color-key-item" data-degree="3">
+              <span class="color-indicator degree-4">
+                <span class="order-number" style="display: none;">4</span>
+              </span>
+              <span class="degree-label">4th</span>
+            </div>
+            <div class="color-key-item" data-degree="4">
+              <span class="color-indicator degree-5">
+                <span class="order-number" style="display: none;">5</span>
+              </span>
+              <span class="degree-label">5th</span>
+            </div>
+            <div class="color-key-item" data-degree="5">
+              <span class="color-indicator degree-6">
+                <span class="order-number" style="display: none;">6</span>
+              </span>
+              <span class="degree-label">6th</span>
+            </div>
+            <div class="color-key-item" data-degree="6">
+              <span class="color-indicator degree-7">
+                <span class="order-number" style="display: none;">7</span>
+              </span>
+              <span class="degree-label">7th</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-content">
+        <div class="progressions-grid">
+          <div class="progression-card">
+            <h4 class="progression-name">The Eternal Circle</h4>
+            <div class="progression-formula">I - V - vi - IV</div>
+            <div class="progression-degrees">1 - 5 - 6 - 4</div>
+            <p class="progression-description">The heartbeat of popular music. Creates natural resolution while
+              keeping listeners suspended in familiar comfort.</p>
+            <div class="progression-examples">"Let It Be", "Don't Stop Believin'"</div>
+          </div>
 
-        <div class="scale-table-container">
-          <table class="scale-table" role="table" aria-label="Scale degrees and chord information">
-            <thead>
-              <tr>
-                <th scope="col">Degree</th>
-                <th scope="col">Note</th>
-                <th scope="col">Root</th>
-                <th scope="col">Chord Shape</th>
-                <th scope="col">Chord Quality</th>
-              </tr>
-            </thead>
-            <tbody id="scaleTableBody">
-              <!-- Scale data will be populated by JavaScript -->
-            </tbody>
-          </table>
+          <div class="progression-card">
+            <h4 class="progression-name">The Descent</h4>
+            <div class="progression-formula">vi - IV - I - V</div>
+            <div class="progression-degrees">6 - 4 - 1 - 5</div>
+            <p class="progression-description">Starting in minor territory, falling toward home. Creates emotional
+              weight through gravitational pull downward.</p>
+            <div class="progression-examples">"Creep", "With or Without You"</div>
+          </div>
+
+          <div class="progression-card">
+            <h4 class="progression-name">The Jazz Standard</h4>
+            <div class="progression-formula">ii - V - I</div>
+            <div class="progression-degrees">2 - 5 - 1</div>
+            <p class="progression-description">The lingua franca of jazz. Simple, sophisticated, endlessly
+              renewable. Tension builds and releases naturally.</p>
+            <div class="progression-examples">"Autumn Leaves", "All The Things You Are"</div>
+          </div>
+
+          <div class="progression-card">
+            <h4 class="progression-name">The Folk Circle</h4>
+            <div class="progression-formula">I - vi - ii - V</div>
+            <div class="progression-degrees">1 - 6 - 2 - 5</div>
+            <p class="progression-description">Cyclical and storytelling. Each chord leans into the next like verses
+              in an ancient ballad.</p>
+            <div class="progression-examples">"Stand By Me", "Blue Moon"</div>
+          </div>
+
+          <div class="progression-card">
+            <h4 class="progression-name">The Modal Shift</h4>
+            <div class="progression-formula">I - ♭VII - IV - I</div>
+            <div class="progression-degrees">1 - ♭7 - 4 - 1</div>
+            <p class="progression-description">Borrowed from mixolydian mode. The flat seven creates bluesy,
+              rock-tinged flavor that sidesteps predictable resolution.</p>
+            <div class="progression-examples">"Sweet Child O' Mine", "Hey Jude"</div>
+          </div>
+
+          <div class="progression-card">
+            <h4 class="progression-name">The Deceptive Turn</h4>
+            <div class="progression-formula">I - V - vi - vi</div>
+            <div class="progression-degrees">1 - 5 - 6 - 6</div>
+            <p class="progression-description">Sets up for home, then pivots to relative minor. Creates surprise and
+              emotional depth through misdirection.</p>
+            <div class="progression-examples">"Mad World", "Hurt"</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Profile links -->
+    <div class="profile-links">
+      <a href="https://github.com/maclong9/barre-scales" class="profile-link" target="_blank" rel="noopener noreferrer"
+        aria-label="View source code on GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16,18 22,12 16,6"></polyline>
+          <polyline points="8,6 2,12 8,18"></polyline>
+        </svg>
+      </a>
+      <a href="https://maclong.uk" class="profile-link" target="_blank" rel="noopener noreferrer"
+        aria-label="Visit Mac Long's website">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Main content container -->
+    <div class="container">
+      <main class="main-content" role="main">
+        <div class="scale-display">
+          <div class="scale-table-header">
+            <div class="scale-info-compact">
+              <h2 class="scale-title" id="scaleTitle">C Major Scale</h2>
+              <span class="scale-key" id="scaleInfo">No sharps or flats</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" type="button"
+              aria-label="Toggle chord progressions sidebar">
+              <svg class="sidebar-icon sidebar-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 9v12M9 15h12"></path>
+              </svg>
+              <svg class="sidebar-icon sidebar-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span class="sidebar-toggle-text">Progressions</span>
+            </button>
+          </div>
+
+          <div class="scale-table-container">
+            <table class="scale-table" role="table" aria-label="Scale degrees and chord information">
+              <thead>
+                <tr>
+                  <th scope="col">Degree</th>
+                  <th scope="col">Note</th>
+                  <th scope="col">All Positions</th>
+                  <th scope="col">Quality</th>
+                </tr>
+              </thead>
+              <tbody id="scaleTableBody">
+                <!-- Scale data will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="controls" role="region" aria-label="Scale controls">
@@ -68,80 +213,10 @@
               <button class="note-btn" data-note="B" type="button" aria-pressed="false">B</button>
             </div>
           </fieldset>
+
         </div>
-
-        <section class="progressions-section" role="region" aria-labelledby="progressions-title">
-          <div class="progressions-header" id="progressionsToggle">
-            <h3 class="progressions-title" id="progressions-title">Chord Progressions</h3>
-            <button class="progressions-toggle" type="button" aria-expanded="false" aria-controls="progressionsContent">
-              <span class="toggle-text">Show Patterns</span>
-              <span class="toggle-icon" aria-hidden="true">▼</span>
-            </button>
-          </div>
-
-          <div class="progressions-content" id="progressionsContent" aria-hidden="true">
-            <div class="progressions-grid">
-              <div class="progression-card">
-                <h4 class="progression-name">The Eternal Circle</h4>
-                <div class="progression-formula">I - V - vi - IV</div>
-                <div class="progression-degrees">1 - 5 - 6 - 4</div>
-                <p class="progression-description">The heartbeat of popular music. Creates natural resolution while
-                  keeping listeners suspended in familiar comfort.</p>
-                <div class="progression-examples">"Let It Be", "Don't Stop Believin'"</div>
-              </div>
-
-              <div class="progression-card">
-                <h4 class="progression-name">The Descent</h4>
-                <div class="progression-formula">vi - IV - I - V</div>
-                <div class="progression-degrees">6 - 4 - 1 - 5</div>
-                <p class="progression-description">Starting in minor territory, falling toward home. Creates emotional
-                  weight through gravitational pull downward.</p>
-                <div class="progression-examples">"Creep", "With or Without You"</div>
-              </div>
-
-              <div class="progression-card">
-                <h4 class="progression-name">The Jazz Standard</h4>
-                <div class="progression-formula">ii - V - I</div>
-                <div class="progression-degrees">2 - 5 - 1</div>
-                <p class="progression-description">The lingua franca of jazz. Simple, sophisticated, endlessly
-                  renewable. Tension builds and releases naturally.</p>
-                <div class="progression-examples">"Autumn Leaves", "All The Things You Are"</div>
-              </div>
-
-              <div class="progression-card">
-                <h4 class="progression-name">The Folk Circle</h4>
-                <div class="progression-formula">I - vi - ii - V</div>
-                <div class="progression-degrees">1 - 6 - 2 - 5</div>
-                <p class="progression-description">Cyclical and storytelling. Each chord leans into the next like verses
-                  in an ancient ballad.</p>
-                <div class="progression-examples">"Stand By Me", "Blue Moon"</div>
-              </div>
-
-              <div class="progression-card">
-                <h4 class="progression-name">The Modal Shift</h4>
-                <div class="progression-formula">I - ♭VII - IV - I</div>
-                <div class="progression-degrees">1 - ♭7 - 4 - 1</div>
-                <p class="progression-description">Borrowed from mixolydian mode. The flat seven creates bluesy,
-                  rock-tinged flavor that sidesteps predictable resolution.</p>
-                <div class="progression-examples">"Sweet Child O' Mine", "Hey Jude"</div>
-              </div>
-
-              <div class="progression-card">
-                <h4 class="progression-name">The Deceptive Turn</h4>
-                <div class="progression-formula">I - V - vi - vi</div>
-                <div class="progression-degrees">1 - 5 - 6 - 6</div>
-                <p class="progression-description">Sets up for home, then pivots to relative minor. Creates surprise and
-                  emotional depth through misdirection.</p>
-                <div class="progression-examples">"Mad World", "Hurt"</div>
-              </div>
-            </div>
-          </div>
-        </section>
-    </main>
-
-    <footer role="contentinfo">
-      <span>MIT License. <a href="https://maclong.uk" target="_blank" rel="noopener noreferrer">Mac Long</a></span>
-    </footer>
+      </main>
+    </div>
   </div>
 
   <script src="script.js"></script>

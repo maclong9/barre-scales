@@ -27,26 +27,26 @@ const SCALES_DATA = {
             name: 'C♯ Major',
             keySignature: '7 sharps: F♯, C♯, G♯, D♯, A♯, E♯, B♯',
             degrees: [
-                { degree: '1st', note: 'C♯', positions: { 'C': 'C9', 'A': 'A4', 'G': 'G11', 'E': 'E9', 'D': 'D11' }, quality: 'Major' },
-                { degree: '2nd', note: 'D♯', positions: { 'C': 'C11', 'A': 'A6', 'G': 'G1', 'E': 'E11', 'D': 'D1' }, quality: 'Minor' },
-                { degree: '3rd', note: 'E♯', positions: { 'C': 'C1', 'A': 'A8', 'G': 'G3', 'E': 'E1', 'D': 'D3' }, quality: 'Minor' },
-                { degree: '4th', note: 'F♯', positions: { 'C': 'C2', 'A': 'A9', 'G': 'G4', 'E': 'E2', 'D': 'D4' }, quality: 'Major' },
-                { degree: '5th', note: 'G♯', positions: { 'C': 'C4', 'A': 'A11', 'G': 'G6', 'E': 'E4', 'D': 'D6' }, quality: 'Major' },
-                { degree: '6th', note: 'A♯', positions: { 'C': 'C6', 'A': 'A1', 'G': 'G8', 'E': 'E6', 'D': 'D8' }, quality: 'Minor' },
-                { degree: '7th', note: 'B♯', positions: { 'C': 'C8', 'A': 'A3', 'G': 'G10', 'E': 'E8', 'D': 'D10' }, quality: 'Diminished' }
+                { degree: '1st', note: 'C♯', positions: { 'C': '4th (A)', 'A': '9th (A)', 'G': '11th (E)', 'E': '9th (E)', 'D': '11th (D)' }, quality: 'Major' },
+                { degree: '2nd', note: 'D♯', positions: { 'C': '6th (A)', 'A': '11th (A)', 'G': '1st (E)', 'E': '11th (E)', 'D': '1st (D)' }, quality: 'Minor' },
+                { degree: '3rd', note: 'E♯', positions: { 'C': '8th (A)', 'A': '1st (A)', 'G': '3rd (E)', 'E': '1st (E)', 'D': '3rd (D)' }, quality: 'Minor' },
+                { degree: '4th', note: 'F♯', positions: { 'C': '9th (A)', 'A': '2nd (A)', 'G': '4th (E)', 'E': '2nd (E)', 'D': '4th (D)' }, quality: 'Major' },
+                { degree: '5th', note: 'G♯', positions: { 'C': '11th (A)', 'A': '4th (A)', 'G': '6th (E)', 'E': '4th (E)', 'D': '6th (D)' }, quality: 'Major' },
+                { degree: '6th', note: 'A♯', positions: { 'C': '1st (A)', 'A': '6th (A)', 'G': '8th (E)', 'E': '6th (E)', 'D': '8th (D)' }, quality: 'Minor' },
+                { degree: '7th', note: 'B♯', positions: { 'C': '3rd (A)', 'A': '8th (A)', 'G': '10th (E)', 'E': '8th (E)', 'D': '10th (D)' }, quality: 'Diminished' }
             ]
         },
         'D': {
             name: 'D Major',
             keySignature: '2 sharps: F♯, C♯',
             degrees: [
-                { degree: '1st', note: 'D', positions: { 'C': 'C10', 'A': 'A5', 'G': 'G12', 'E': 'E10', 'D': 'D12' }, quality: 'Major' },
-                { degree: '2nd', note: 'E', positions: { 'C': 'C12', 'A': 'A7', 'G': 'G2', 'E': 'E12', 'D': 'D2' }, quality: 'Minor' },
-                { degree: '3rd', note: 'F♯', positions: { 'C': 'C2', 'A': 'A9', 'G': 'G4', 'E': 'E2', 'D': 'D4' }, quality: 'Minor' },
-                { degree: '4th', note: 'G', positions: { 'C': 'C3', 'A': 'A10', 'G': 'G5', 'E': 'E3', 'D': 'D5' }, quality: 'Major' },
-                { degree: '5th', note: 'A', positions: { 'C': 'C5', 'A': 'A12', 'G': 'G7', 'E': 'E5', 'D': 'D7' }, quality: 'Major' },
-                { degree: '6th', note: 'B', positions: { 'C': 'C7', 'A': 'A2', 'G': 'G9', 'E': 'E7', 'D': 'D9' }, quality: 'Minor' },
-                { degree: '7th', note: 'C♯', positions: { 'C': 'C9', 'A': 'A4', 'G': 'G11', 'E': 'E9', 'D': 'D11' }, quality: 'Diminished' }
+                { degree: '1st', note: 'D', positions: { 'C': '5th (A)', 'A': '10th (A)', 'G': '12th (E)', 'E': '10th (E)', 'D': '12th (D)' }, quality: 'Major' },
+                { degree: '2nd', note: 'E', positions: { 'C': '7th (A)', 'A': '12th (A)', 'G': '2nd (E)', 'E': '12th (E)', 'D': '2nd (D)' }, quality: 'Minor' },
+                { degree: '3rd', note: 'F♯', positions: { 'C': '9th (A)', 'A': '2nd (A)', 'G': '4th (E)', 'E': '2nd (E)', 'D': '4th (D)' }, quality: 'Minor' },
+                { degree: '4th', note: 'G', positions: { 'C': '10th (A)', 'A': '3rd (A)', 'G': '5th (E)', 'E': '3rd (E)', 'D': '5th (D)' }, quality: 'Major' },
+                { degree: '5th', note: 'A', positions: { 'C': '12th (A)', 'A': '5th (A)', 'G': '7th (E)', 'E': '5th (E)', 'D': '7th (D)' }, quality: 'Major' },
+                { degree: '6th', note: 'B', positions: { 'C': '2nd (A)', 'A': '7th (A)', 'G': '9th (E)', 'E': '7th (E)', 'D': '9th (D)' }, quality: 'Minor' },
+                { degree: '7th', note: 'C♯', positions: { 'C': '4th (A)', 'A': '9th (A)', 'G': '11th (E)', 'E': '9th (E)', 'D': '11th (D)' }, quality: 'Diminished' }
             ]
         },
         'D#': {
@@ -350,7 +350,6 @@ const noteButtons = document.querySelectorAll('.note-btn');
 const sidebarToggle = document.getElementById('sidebarToggle');
 const sidebarClose = document.getElementById('sidebarClose');
 const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const appContainer = document.querySelector('.app-container');
 
 // Initialize the app
@@ -400,10 +399,6 @@ function setupEventListeners() {
     });
     
     sidebarClose.addEventListener('click', () => {
-        closeSidebar();
-    });
-    
-    sidebarOverlay.addEventListener('click', () => {
         closeSidebar();
     });
     
@@ -648,7 +643,6 @@ function openSidebar() {
     sidebar.offsetHeight;
     
     sidebar.classList.add('open');
-    sidebarOverlay.classList.add('visible');
     sidebarToggle.classList.add('active');
     appContainer.classList.add('sidebar-open');
     
@@ -664,7 +658,6 @@ function openSidebar() {
 
 function closeSidebar() {
     sidebar.classList.remove('open');
-    sidebarOverlay.classList.remove('visible');
     sidebarToggle.classList.remove('active');
     appContainer.classList.remove('sidebar-open');
     
