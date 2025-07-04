@@ -116,7 +116,7 @@ body {
 
 /* Profile links container */
 .profile-links {
-  position: fixed;
+  position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 1000;
@@ -556,11 +556,35 @@ body {
     min-height: 250px;
     max-height: 400px;
     flex-shrink: 0;
+    -webkit-overflow-scrolling: touch;
   }
 
   .scale-table {
-    min-width: 100%;
+    min-width: 350px;
     width: 100%;
+    table-layout: fixed;
+  }
+
+  .scale-table td:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    height: auto;
+  }
+
+  .scale-table tbody tr {
+    height: auto;
+  }
+
+  .position-item {
+    padding: 2px 4px !important;
+    margin: 0 !important;
+    font-size: 0.7rem !important;
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+    flex-shrink: 0;
+    box-sizing: border-box !important;
   }
 
   .controls {
@@ -568,7 +592,6 @@ body {
     min-height: auto;
     gap: 0.75rem;
     padding: 1rem;
-    flex-shrink: 0;
     margin-top: var(--space-sm);
     position: relative;
     display: flex;
@@ -584,7 +607,7 @@ body {
     align-items: stretch;
     margin-bottom: var(--space-sm);
   }
-  
+
   .control-group:last-child {
     margin-bottom: 0;
   }
@@ -605,7 +628,7 @@ body {
   /* Profile links on mobile - horizontal layout */
   .profile-links {
     top: 1rem;
-    right: 0.5rem;
+    right: 1rem;
     z-index: 1002;
     flex-direction: row;
     gap: 0.25rem;
@@ -654,7 +677,6 @@ body {
 }
 
 .controls {
-  height: var(--controls-height);
   padding: 0.75rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -694,6 +716,7 @@ body {
 
 @container (min-width: 768px) {
   .controls {
+    height: var(--controls-height);
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -858,15 +881,17 @@ h2.scale-title {
 /* Responsive table adjustments */
 @media (max-width: 767px) {
   .scale-table th:nth-child(1) {
-    min-width: 50px;
+    min-width: 60px;
   }
 
   .scale-table th:nth-child(2) {
-    min-width: 40px;
+    min-width: 50px;
   }
 
   .scale-table th:nth-child(3) {
-    min-width: 120px;
+    min-width: 80px;
+    max-width: 120px;
+    width: 30%;
   }
 
   .scale-table th:nth-child(4) {
@@ -881,11 +906,15 @@ h2.scale-title {
 
   .position-item {
     display: block;
-    margin: 2px 0;
-    padding: 3px 5px;
-    font-size: calc(var(--font-size-sm) * 0.85);
-    width: 100%;
+    margin: 1px 0;
+    padding: 2px 4px;
+    font-size: 0.65rem;
+    width: auto;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 4em;
   }
 }
 
@@ -975,7 +1004,6 @@ h2.scale-title {
 .position-cell {
   font-family: 'Courier New', monospace;
   line-height: 1.4;
-  max-width: 0;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -992,7 +1020,6 @@ h2.scale-title {
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  min-width: 4.5em;
   text-align: center;
   box-sizing: border-box;
 }
