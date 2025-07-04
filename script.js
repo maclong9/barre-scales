@@ -342,7 +342,7 @@ let needsRowCacheUpdate = true;
 
 // DOM elements
 const scaleTitle = document.getElementById('scaleTitle');
-const scaleInfo = document.getElementById('scaleInfo');
+// const scaleInfo = document.getElementById('scaleInfo'); // Removed - profile links now in header
 const scaleTableBody = document.getElementById('scaleTableBody');
 const majorBtn = document.getElementById('majorBtn');
 const minorBtn = document.getElementById('minorBtn');
@@ -417,6 +417,17 @@ function setupEventListeners() {
             highlightDegree(degreeIndex);
         });
     });
+    
+    // Progression cards
+    document.querySelectorAll('.progression-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const progressionDegreesElement = card.querySelector('.progression-degrees');
+            if (progressionDegreesElement) {
+                const progressionDegrees = progressionDegreesElement.textContent;
+                applyProgression(progressionDegrees);
+            }
+        });
+    });
 }
 
 // Update toggle button states
@@ -446,10 +457,15 @@ function updateNoteButtons() {
 // OPTIMIZED: Function to select a specific position for a specific degree
 function selectDegreePosition(degreeIndex, shape) {
     const previousShape = degreeSelectedPositions[degreeIndex];
-    degreeSelectedPositions[degreeIndex] = shape;
     
-    // Only update the specific row instead of entire display
-    updateSpecificDegreePositionHighlighting(degreeIndex, previousShape, shape);
+    // Toggle selection: if clicking the already selected shape, unselect it
+    if (previousShape === shape) {
+        delete degreeSelectedPositions[degreeIndex];
+        updateSpecificDegreePositionHighlighting(degreeIndex, previousShape, null);
+    } else {
+        degreeSelectedPositions[degreeIndex] = shape;
+        updateSpecificDegreePositionHighlighting(degreeIndex, previousShape, shape);
+    }
 }
 
 // OPTIMIZED: Function to set default position for a specific degree
@@ -484,6 +500,31 @@ function highlightDegree(degreeIndex) {
     
     // Update order numbers for all highlighted degrees (more efficient than full update)
     updateHighlightOrderNumbers();
+}
+
+// Function to apply a chord progression by highlighting degrees in order
+function applyProgression(progressionDegrees) {
+    // Clear existing highlights
+    highlightedDegrees.clear();
+    degreeSelectionOrder.length = 0;
+    
+    // Parse progression degrees (e.g., "1 - 5 - 6 - 4" -> [0, 4, 5, 3])
+    const degrees = progressionDegrees
+        .split('-')
+        .map(d => d.trim())
+        .filter(d => d && !isNaN(d))
+        .map(d => parseInt(d) - 1); // Convert to 0-based index
+    
+    // Apply highlights in order
+    degrees.forEach(degreeIndex => {
+        if (degreeIndex >= 0 && degreeIndex < 7) {
+            highlightedDegrees.add(degreeIndex);
+            degreeSelectionOrder.push(degreeIndex);
+        }
+    });
+    
+    // Update all visual highlighting
+    updateDegreeHighlighting();
 }
 
 // OPTIMIZED: Update visual highlighting of table rows (legacy function for full updates)
@@ -683,13 +724,10 @@ function updateDisplay() {
 
         // Update header with simple transition
         scaleTitle.style.opacity = '0';
-        scaleInfo.style.opacity = '0';
         
         setTimeout(() => {
             scaleTitle.textContent = scaleData.name;
-            scaleInfo.textContent = scaleData.keySignature;
             scaleTitle.style.opacity = '1';
-            scaleInfo.style.opacity = '1';
         }, 150);
 
         // Update table content
