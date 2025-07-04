@@ -139,6 +139,97 @@
             <div class="scale-info-compact">
               <h2 class="scale-title" id="scaleTitle">C Major Scale</h2>
               <div class="profile-links">
+                <div class="theme-selector-wrapper">
+                  <button class="profile-link theme-toggle" id="themeToggle" type="button" aria-label="Change color theme" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette-icon lucide-palette">
+                      <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+                      <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                      <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                      <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                      <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div class="theme-dropdown" id="themeDropdown" role="menu" aria-labelledby="themeToggle">
+                    <div class="theme-dropdown-content">
+                      <div class="theme-dropdown-header">
+                        <span>Choose Theme</span>
+                      </div>
+                      <div class="theme-options">
+                        <button class="theme-option active" data-theme="vibrant-pastels" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: hsl(142 60% 70%)"></div>
+                            <div class="theme-dot" style="background: hsl(221 65% 70%)"></div>
+                            <div class="theme-dot" style="background: hsl(0 65% 75%)"></div>
+                          </div>
+                          <span>Vibrant Pastels</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="muted-pastels" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #D4B5D4"></div>
+                            <div class="theme-dot" style="background: #B5D4D4"></div>
+                            <div class="theme-dot" style="background: #D4D4B5"></div>
+                          </div>
+                          <span>Muted Pastels</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="vibrant-neons" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #FF006E"></div>
+                            <div class="theme-dot" style="background: #00F5FF"></div>
+                            <div class="theme-dot" style="background: #39FF14"></div>
+                          </div>
+                          <span>Vibrant Neons</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="earth-tones" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #8B4513"></div>
+                            <div class="theme-dot" style="background: #CD853F"></div>
+                            <div class="theme-dot" style="background: #D2691E"></div>
+                          </div>
+                          <span>Earth Tones</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="monochromatic" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #1a1a2e"></div>
+                            <div class="theme-dot" style="background: #533483"></div>
+                            <div class="theme-dot" style="background: #7209b7"></div>
+                          </div>
+                          <span>Monochromatic</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="sunset-gradient" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #FF9A8B"></div>
+                            <div class="theme-dot" style="background: #A8E6CF"></div>
+                            <div class="theme-dot" style="background: #FFD3A5"></div>
+                          </div>
+                          <span>Sunset Gradient</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="ocean-blues" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #E6F3FF"></div>
+                            <div class="theme-dot" style="background: #4A90E2"></div>
+                            <div class="theme-dot" style="background: #2E5C8A"></div>
+                          </div>
+                          <span>Ocean Blues</span>
+                        </button>
+                        
+                        <button class="theme-option" data-theme="vintage-retro" role="menuitem">
+                          <div class="theme-preview-mini">
+                            <div class="theme-dot" style="background: #F4A261"></div>
+                            <div class="theme-dot" style="background: #E9C46A"></div>
+                            <div class="theme-dot" style="background: #2A9D8F"></div>
+                          </div>
+                          <span>Vintage Retro</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <a href="https://github.com/maclong9/barre-scales" class="profile-link" target="_blank" rel="noopener noreferrer"
                   aria-label="View source code on GitHub">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -216,6 +307,7 @@
       </main>
     </div>
   </div>
+
 
   <script src="script.js"></script>
 </body>

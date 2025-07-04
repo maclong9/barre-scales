@@ -887,3 +887,150 @@ window.addEventListener('resize', () => {
         closeSidebar();
     }
 });
+
+// Theme Switcher Functionality
+class ThemeManager {
+    constructor() {
+        this.currentTheme = 'vibrant-pastels';
+        this.themes = [
+            'vibrant-pastels',
+            'muted-pastels', 
+            'vibrant-neons',
+            'earth-tones',
+            'monochromatic',
+            'sunset-gradient',
+            'ocean-blues',
+            'vintage-retro'
+        ];
+        
+        this.themeDropdown = document.getElementById('themeDropdown');
+        this.themeToggle = document.getElementById('themeToggle');
+        this.themeOptions = document.querySelectorAll('.theme-option');
+        this.isOpen = false;
+        
+        this.init();
+    }
+    
+    init() {
+        // Load saved theme
+        this.loadTheme();
+        
+        // Bind events
+        this.themeToggle?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleDropdown();
+        });
+        
+        // Handle escape key and outside clicks
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
+                this.closeDropdown();
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && !this.themeDropdown?.contains(e.target)) {
+                this.closeDropdown();
+            }
+        });
+        
+        // Bind theme option clicks
+        this.themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.getAttribute('data-theme');
+                if (theme) {
+                    this.setTheme(theme);
+                    this.closeDropdown();
+                }
+            });
+        });
+        
+        this.updateActiveOption();
+    }
+    
+    loadTheme() {
+        try {
+            const savedTheme = localStorage.getItem('barreScalesTheme');
+            if (savedTheme && this.themes.includes(savedTheme)) {
+                this.currentTheme = savedTheme;
+            }
+        } catch (error) {
+            console.warn('Could not load saved theme:', error);
+        }
+        
+        this.applyTheme();
+    }
+    
+    setTheme(themeName) {
+        if (!this.themes.includes(themeName)) {
+            console.warn('Unknown theme:', themeName);
+            return;
+        }
+        
+        this.currentTheme = themeName;
+        this.applyTheme();
+        this.saveTheme();
+        this.updateActiveOption();
+    }
+    
+    applyTheme() {
+        document.body.setAttribute('data-theme', this.currentTheme);
+    }
+    
+    saveTheme() {
+        try {
+            localStorage.setItem('barreScalesTheme', this.currentTheme);
+        } catch (error) {
+            console.warn('Could not save theme:', error);
+        }
+    }
+    
+    toggleDropdown() {
+        if (this.isOpen) {
+            this.closeDropdown();
+        } else {
+            this.openDropdown();
+        }
+    }
+    
+    openDropdown() {
+        this.themeDropdown?.classList.add('active');
+        this.themeToggle?.setAttribute('aria-expanded', 'true');
+        this.isOpen = true;
+        
+        // Focus first theme option for accessibility
+        const firstOption = this.themeDropdown?.querySelector('.theme-option');
+        firstOption?.focus();
+    }
+    
+    closeDropdown() {
+        this.themeDropdown?.classList.remove('active');
+        this.themeToggle?.setAttribute('aria-expanded', 'false');
+        this.isOpen = false;
+        
+        // Return focus to toggle button
+        this.themeToggle?.focus();
+    }
+    
+    updateActiveOption() {
+        this.themeOptions.forEach(option => {
+            const theme = option.getAttribute('data-theme');
+            if (theme === this.currentTheme) {
+                option.classList.add('active');
+                option.setAttribute('aria-pressed', 'true');
+            } else {
+                option.classList.remove('active');
+                option.setAttribute('aria-pressed', 'false');
+            }
+        });
+    }
+}
+
+// Initialize theme manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        window.themeManager = new ThemeManager();
+    } catch (error) {
+        console.error('Failed to initialize theme manager:', error);
+    }
+});

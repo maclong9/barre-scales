@@ -10,40 +10,41 @@
   --color-text-secondary: hsl(210 11% 83%);
   --color-text-muted: hsl(210 11% 71%);
 
-  /* Chord quality colors */
-  --color-major: hsl(142 76% 36%);
-  --color-minor: hsl(221 83% 53%);
-  --color-diminished: hsl(0 84% 60%);
+  /* Chord quality colors - Vibrant Pastels */
+  --color-major: hsl(142 60% 70%);
+  --color-minor: hsl(221 65% 70%);
+  --color-diminished: hsl(0 55% 75%);
+  --badge-text-color: #1a1a1a;
 
-  /* Degree highlight colors */
-  --degree-color-1: hsl(0 85% 60%);
-  /* Red */
-  --degree-color-2: hsl(30 85% 60%);
-  /* Orange */
-  --degree-color-3: hsl(60 85% 50%);
-  /* Yellow */
-  --degree-color-4: hsl(120 85% 40%);
-  /* Green */
-  --degree-color-5: hsl(180 85% 50%);
-  /* Cyan */
-  --degree-color-6: hsl(240 85% 60%);
-  /* Blue */
-  --degree-color-7: hsl(280 85% 60%);
-  /* Purple */
+  /* Degree highlight colors - Vibrant Pastels */
+  --degree-color-1: hsl(0 65% 75%);
+  /* Coral Red */
+  --degree-color-2: hsl(30 65% 75%);
+  /* Peach Orange */
+  --degree-color-3: hsl(60 65% 80%);
+  /* Butter Yellow */
+  --degree-color-4: hsl(120 65% 75%);
+  /* Mint Green */
+  --degree-color-5: hsl(180 65% 75%);
+  /* Aqua Cyan */
+  --degree-color-6: hsl(240 65% 75%);
+  /* Periwinkle Blue */
+  --degree-color-7: hsl(280 65% 75%);
+  /* Lavender Purple */
 
-  /* Individual note color variables */
-  --note-c: #dc2626;
-  --note-cs: #7c3aed;
-  --note-d: #ea580c;
-  --note-ds: #0891b2;
-  --note-e: #eab308;
-  --note-f: #16a34a;
-  --note-fs: #db2777;
-  --note-g: #f97316;
-  --note-gs: #8b5cf6;
-  --note-a: #06b6d4;
-  --note-as: #84cc16;
-  --note-b: #3b82f6;
+  /* Individual note color variables - Vibrant Pastels */
+  --note-c: hsl(0 60% 70%);
+  --note-cs: hsl(270 60% 70%);
+  --note-d: hsl(25 60% 70%);
+  --note-ds: hsl(195 60% 70%);
+  --note-e: hsl(50 60% 75%);
+  --note-f: hsl(120 60% 70%);
+  --note-fs: hsl(330 60% 70%);
+  --note-g: hsl(15 60% 70%);
+  --note-gs: hsl(260 60% 70%);
+  --note-a: hsl(190 60% 70%);
+  --note-as: hsl(80 60% 70%);
+  --note-b: hsl(220 60% 70%);
 
   /* Spacing system using logical sizing */
   --space: clamp(1.25rem, 2.5vw, 2rem);
@@ -58,10 +59,10 @@
   --table-row-height: 2.5rem;
   --table-header-height: 4rem;
   --controls-height: 7rem;
-  --scale-display-height: 36rem;
+  --scale-display-height: 42rem;
   --scale-table-height: 30rem;
   --scale-table-container-height: 24rem;
-  --scale-display-min-height: 30rem;
+  --scale-display-min-height: 36rem;
 
   /* Typography scale */
   --font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -82,7 +83,255 @@
   @media (prefers-color-scheme: light) {
     --color-background: hsl(210 11% 98%);
     --color-surface: hsl(210 11% 100%);
+    --color-surface-elevated: hsl(210 11% 95%);
+    --color-border: hsl(210 11% 85%);
+    --color-border-hover: hsl(210 11% 75%);
     --color-text-primary: hsl(210 11% 8%);
+    --color-text-secondary: hsl(210 11% 25%);
+    --color-text-muted: hsl(210 11% 45%);
+  }
+}
+
+/* Theme Definitions */
+[data-theme="muted-pastels"] {
+  --color-major: #D4B5D4;
+  --color-minor: #B5D4D4;
+  --color-diminished: #D4C4B5;
+  --badge-text-color: #1a1a1a;
+  --degree-color-1: #D4B5D4;
+  --degree-color-2: #D4C4B5;
+  --degree-color-3: #D4D4B5;
+  --degree-color-4: #B5D4B5;
+  --degree-color-5: #B5D4D4;
+  --degree-color-6: #B5C4D4;
+  --degree-color-7: #C4B5D4;
+  --note-c: #D4B5D4;
+  --note-cs: #C4B5D4;
+  --note-d: #D4C4B5;
+  --note-ds: #B5D4D4;
+  --note-e: #D4D4B5;
+  --note-f: #B5D4B5;
+  --note-fs: #D4B5C4;
+  --note-g: #D4C4B5;
+  --note-gs: #C4B5D4;
+  --note-a: #B5D4D4;
+  --note-as: #C4D4B5;
+  --note-b: #B5C4D4;
+}
+
+[data-theme="vibrant-neons"] {
+  --color-major: #39FF14;
+  --color-minor: #00F5FF;
+  --color-diminished: #FF073A;
+  --badge-text-color: #000000;
+  --degree-color-1: #FF006E;
+  --degree-color-2: #FFBE0B;
+  --degree-color-3: #FFFF00;
+  --degree-color-4: #39FF14;
+  --degree-color-5: #00F5FF;
+  --degree-color-6: #0080FF;
+  --degree-color-7: #8000FF;
+  --note-c: #FF006E;
+  --note-cs: #8000FF;
+  --note-d: #FFBE0B;
+  --note-ds: #00F5FF;
+  --note-e: #FFFF00;
+  --note-f: #39FF14;
+  --note-fs: #FF1493;
+  --note-g: #FF4500;
+  --note-gs: #9400D3;
+  --note-a: #00CED1;
+  --note-as: #ADFF2F;
+  --note-b: #0080FF;
+}
+
+[data-theme="earth-tones"] {
+  --color-major: #CD853F;
+  --color-minor: #A0522D;
+  --color-diminished: #D2691E;
+  --badge-text-color: #ffffff;
+  --degree-color-1: #8B4513;
+  --degree-color-2: #A0522D;
+  --degree-color-3: #CD853F;
+  --degree-color-4: #D2691E;
+  --degree-color-5: #DEB887;
+  --degree-color-6: #F4A460;
+  --degree-color-7: #D2B48C;
+  --note-c: #8B4513;
+  --note-cs: #A0522D;
+  --note-d: #CD853F;
+  --note-ds: #D2691E;
+  --note-e: #DEB887;
+  --note-f: #F4A460;
+  --note-fs: #D2B48C;
+  --note-g: #BC8F8F;
+  --note-gs: #DAA520;
+  --note-a: #B8860B;
+  --note-as: #D2691E;
+  --note-b: #A0522D;
+}
+
+[data-theme="monochromatic"] {
+  --color-major: #7209b7;
+  --color-minor: #533483;
+  --color-diminished: #16213e;
+  --badge-text-color: #ffffff;
+  --degree-color-1: #1a1a2e;
+  --degree-color-2: #16213e;
+  --degree-color-3: #0f3460;
+  --degree-color-4: #533483;
+  --degree-color-5: #7209b7;
+  --degree-color-6: #8b3fd1;
+  --degree-color-7: #a666eb;
+  --note-c: #1a1a2e;
+  --note-cs: #8b3fd1;
+  --note-d: #16213e;
+  --note-ds: #7209b7;
+  --note-e: #0f3460;
+  --note-f: #533483;
+  --note-fs: #a666eb;
+  --note-g: #16213e;
+  --note-gs: #8b3fd1;
+  --note-a: #7209b7;
+  --note-as: #533483;
+  --note-b: #0f3460;
+}
+
+[data-theme="sunset-gradient"] {
+  --color-major: #A8E6CF;
+  --color-minor: #FF6A88;
+  --color-diminished: #FD9853;
+  --badge-text-color: #1a1a1a;
+  --degree-color-1: #FF9A8B;
+  --degree-color-2: #FF6A88;
+  --degree-color-3: #FFD3A5;
+  --degree-color-4: #A8E6CF;
+  --degree-color-5: #FD9853;
+  --degree-color-6: #FF8A80;
+  --degree-color-7: #FFAB91;
+  --note-c: #FF9A8B;
+  --note-cs: #FFAB91;
+  --note-d: #FF6A88;
+  --note-ds: #FD9853;
+  --note-e: #FFD3A5;
+  --note-f: #A8E6CF;
+  --note-fs: #FF8A80;
+  --note-g: #FF9A8B;
+  --note-gs: #FFAB91;
+  --note-a: #FD9853;
+  --note-as: #A8E6CF;
+  --note-b: #FF6A88;
+}
+
+[data-theme="ocean-blues"] {
+  --color-major: #4A90E2;
+  --color-minor: #2E5C8A;
+  --color-diminished: #1B3A52;
+  --badge-text-color: #ffffff;
+  --degree-color-1: #E6F3FF;
+  --degree-color-2: #B3D9FF;
+  --degree-color-3: #80C7FF;
+  --degree-color-4: #4A90E2;
+  --degree-color-5: #2E5C8A;
+  --degree-color-6: #1B3A52;
+  --degree-color-7: #0F2B3C;
+  --note-c: #E6F3FF;
+  --note-cs: #0F2B3C;
+  --note-d: #B3D9FF;
+  --note-ds: #2E5C8A;
+  --note-e: #80C7FF;
+  --note-f: #4A90E2;
+  --note-fs: #1B3A52;
+  --note-g: #B3D9FF;
+  --note-gs: #0F2B3C;
+  --note-a: #2E5C8A;
+  --note-as: #4A90E2;
+  --note-b: #1B3A52;
+}
+
+[data-theme="vintage-retro"] {
+  --color-major: #E9C46A;
+  --color-minor: #2A9D8F;
+  --color-diminished: #E76F51;
+  --badge-text-color: #1a1a1a;
+  --degree-color-1: #F4A261;
+  --degree-color-2: #E76F51;
+  --degree-color-3: #E9C46A;
+  --degree-color-4: #2A9D8F;
+  --degree-color-5: #264653;
+  --degree-color-6: #F4A261;
+  --degree-color-7: #E76F51;
+  --note-c: #F4A261;
+  --note-cs: #264653;
+  --note-d: #E76F51;
+  --note-ds: #2A9D8F;
+  --note-e: #E9C46A;
+  --note-f: #2A9D8F;
+  --note-fs: #E76F51;
+  --note-g: #F4A261;
+  --note-gs: #264653;
+  --note-a: #2A9D8F;
+  --note-as: #E9C46A;
+  --note-b: #2A9D8F;
+}
+
+/* Light Mode Overrides for All Themes */
+@media (prefers-color-scheme: light) {
+
+  [data-theme="vibrant-pastels"],
+  [data-theme="muted-pastels"],
+  [data-theme="vibrant-neons"],
+  [data-theme="earth-tones"],
+  [data-theme="monochromatic"],
+  [data-theme="sunset-gradient"],
+  [data-theme="ocean-blues"],
+  [data-theme="vintage-retro"],
+  :root {
+    --color-background: hsl(210 11% 98%);
+    --color-surface: hsl(210 11% 100%);
+    --color-surface-elevated: hsl(210 11% 95%);
+    --color-border: hsl(210 11% 85%);
+    --color-border-hover: hsl(210 11% 75%);
+    --color-text-primary: hsl(210 11% 8%);
+    --color-text-secondary: hsl(210 11% 25%);
+    --color-text-muted: hsl(210 11% 45%);
+  }
+
+  /* Theme-specific badge text colors for light mode */
+  [data-theme="vibrant-pastels"] {
+    --badge-text-color: #1a1a1a;
+  }
+
+  [data-theme="muted-pastels"] {
+    --badge-text-color: #1a1a1a;
+  }
+
+  [data-theme="vibrant-neons"] {
+    --badge-text-color: #000000;
+  }
+
+  [data-theme="earth-tones"] {
+    --badge-text-color: #ffffff;
+  }
+
+  [data-theme="monochromatic"] {
+    --badge-text-color: #ffffff;
+  }
+
+  [data-theme="sunset-gradient"] {
+    --badge-text-color: #1a1a1a;
+  }
+
+  [data-theme="ocean-blues"] {
+    --badge-text-color: #ffffff;
+  }
+
+  [data-theme="vintage-retro"] {
+    --badge-text-color: #1a1a1a;
+  }
+
+  :root {
+    --badge-text-color: #1a1a1a;
   }
 }
 
@@ -796,7 +1045,7 @@ h2.scale-title {
   display: flex;
   align-items: flex-start;
   margin-top: 1rem;
-  height: var(--scale-table-container-height);
+  height: 100%;
   min-height: var(--scale-table-container-height);
 }
 
@@ -1086,33 +1335,39 @@ h2.scale-title {
 }
 
 .chord-quality-cell.chord-quality-major span {
-  color: white;
+  color: var(--badge-text-color);
   background: var(--color-major);
   border-radius: var(--radius);
   padding: 0.125rem 0.375rem;
   margin: 0.125rem;
   display: inline-block;
   font-size: 0.85em;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .chord-quality-cell.chord-quality-minor span {
-  color: white;
+  color: var(--badge-text-color);
   background: var(--color-minor);
   border-radius: var(--radius);
   padding: 0.125rem 0.375rem;
   margin: 0.125rem;
   display: inline-block;
   font-size: 0.85em;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .chord-quality-cell.chord-quality-diminished span {
-  color: white;
+  color: var(--badge-text-color);
   background: var(--color-diminished);
   border-radius: var(--radius);
   padding: 0.125rem 0.375rem;
   margin: 0.125rem;
   display: inline-block;
   font-size: 0.85em;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Control groups */
@@ -1873,4 +2128,259 @@ footer span a:hover {
     -webkit-backdrop-filter: none !important;
   }
 
+}
+
+/* Theme Modal Styles */
+.theme-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.theme-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.theme-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.theme-modal-content {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 1rem;
+  animation: scaleIn 0.3s ease;
+}
+
+.theme-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.theme-modal-header h3 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.theme-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-modal-close:hover {
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.theme-card {
+  background: var(--color-surface-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.theme-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.theme-card.active {
+  border-color: var(--color-major);
+  background: var(--color-surface-elevated);
+}
+
+.theme-preview {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0.75rem;
+  justify-content: center;
+}
+
+.theme-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+}
+
+.theme-name {
+  font-size: var(--font-size);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.theme-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--color-surface-elevated);
+}
+
+@media (max-width: 640px) {
+  .theme-modal-content {
+    margin: 0.5rem;
+    max-height: 90vh;
+  }
+
+  .theme-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .theme-modal-header {
+    padding: 1rem;
+  }
+}
+
+/* Theme Dropdown Styles */
+.theme-selector-wrapper {
+  position: relative;
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition);
+}
+
+.theme-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.theme-dropdown-content {
+  padding: 0.5rem;
+}
+
+.theme-dropdown-header {
+  padding: 0.75rem 1rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0.5rem;
+}
+
+.theme-dropdown-header span {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+  width: 100%;
+}
+
+.theme-option:hover {
+  background: var(--color-surface-elevated);
+}
+
+.theme-option.active {
+  background: var(--color-surface-elevated);
+  color: var(--color-major);
+}
+
+.theme-preview-mini {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.theme-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-option span {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .theme-dropdown {
+    right: -1rem;
+    min-width: 200px;
+  }
 }
