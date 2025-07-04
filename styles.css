@@ -570,6 +570,8 @@ body {
     flex-direction: column;
     gap: 2px;
     height: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .scale-table tbody tr {
@@ -581,7 +583,7 @@ body {
     margin: 0 !important;
     font-size: 0.7rem !important;
     display: block !important;
-    text-align: left !important;
+    text-align: center !important;
     width: 100% !important;
     flex-shrink: 0;
     box-sizing: border-box !important;
@@ -1022,6 +1024,7 @@ h2.scale-title {
   white-space: nowrap;
   text-align: center;
   box-sizing: border-box;
+  min-width: 6rem;
 }
 
 .position-item:hover {
