@@ -917,8 +917,22 @@ h2.scale-title {
   animation: slideOutLeft 0.3s ease forwards;
 }
 
+.scale-table tbody tr.slide-out-staggered {
+  animation: slideOutLeft 0.3s ease forwards;
+  animation-delay: var(--stagger-delay, 0s);
+}
+
 .scale-table tbody tr.slide-in {
-  animation: slideInRight 0.8s ease forwards;
+  animation: slideInRight 0.4s ease forwards;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.scale-table tbody tr.slide-in-staggered {
+  animation: slideInRight 0.4s ease forwards;
+  animation-delay: var(--stagger-delay, 0s);
+  opacity: 0;
+  transform: translateX(30px);
 }
 
 .scale-table tbody tr.highlighted {

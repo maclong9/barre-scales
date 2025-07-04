@@ -712,6 +712,52 @@ function closeSidebar() {
     });
 }
 
+// Sequential animation orchestration for table rows
+async function animateTableRowTransition(existingRows, scaleData) {
+    const STAGGER_DELAY = 50; // milliseconds between each row animation
+    const EXIT_DURATION = 300; // milliseconds for exit animation
+    
+    try {
+        // Phase 1: Clean up existing animation classes and apply exit animation
+        const exitPromises = Array.from(existingRows).map((row, index) => {
+            return new Promise(resolve => {
+                // Remove any existing animation classes
+                row.classList.remove('slide-in-staggered', 'slide-out-staggered');
+                
+                // Set stagger delay and start exit animation
+                row.style.setProperty('--stagger-delay', `${index * STAGGER_DELAY}ms`);
+                row.classList.add('slide-out-staggered');
+                
+                // Resolve after this row's complete exit animation
+                setTimeout(resolve, (index * STAGGER_DELAY) + EXIT_DURATION);
+            });
+        });
+        
+        // Wait for all exit animations to complete
+        await Promise.all(exitPromises);
+        
+        // Phase 2: Populate new rows
+        populateNewRows(scaleData);
+        
+        // Phase 3: Staggered entrance animation for new rows
+        const newRows = scaleTableBody.querySelectorAll('tr');
+        Array.from(newRows).forEach((row, index) => {
+            row.style.setProperty('--stagger-delay', `${index * STAGGER_DELAY}ms`);
+            row.classList.add('slide-in-staggered');
+            
+            // Clean up animation class after completion
+            setTimeout(() => {
+                row.classList.remove('slide-in-staggered');
+            }, (index * STAGGER_DELAY) + 400); // 400ms is the slide-in duration
+        });
+        
+    } catch (error) {
+        console.error('Error in table row animation:', error);
+        // Fallback to simple population if animation fails
+        populateNewRows(scaleData);
+    }
+}
+
 // Update the main display
 function updateDisplay() {
     try {
@@ -730,12 +776,10 @@ function updateDisplay() {
             scaleTitle.style.opacity = '1';
         }, 150);
 
-        // Update table content
+        // Update table content with sequential animations
         const existingRows = scaleTableBody.querySelectorAll('tr');
         if (existingRows.length > 0) {
-            // Simple slide-out for existing rows
-            existingRows.forEach(row => row.classList.add('slide-out'));
-            setTimeout(() => populateNewRows(scaleData), 300);
+            animateTableRowTransition(existingRows, scaleData);
         } else {
             populateNewRows(scaleData);
         }
@@ -806,8 +850,8 @@ function populateNewRows(scaleData) {
                 highlightDegree(index);
             });
             
-            // Add slide-in class for animation
-            row.classList.add('slide-in');
+            // Animation will be handled by animateTableRowTransition
+            // Don't add slide-in class here to avoid immediate animation
             
             scaleTableBody.appendChild(row);
         });
