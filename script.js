@@ -588,15 +588,26 @@ function updateColorKeyItemHighlighting(item, index) {
     const isActive = highlightedDegrees.has(index);
     item.classList.toggle('active', isActive);
     
-    // Update the order number display
+    // Update the order number display and color indicator class
     const orderIndex = degreeSelectionOrder.indexOf(index);
     const orderLabel = item.querySelector('.order-number');
-    if (orderLabel) {
+    const colorIndicator = item.querySelector('.color-indicator');
+    
+    if (orderLabel && colorIndicator) {
+        // Remove all existing degree color classes
+        colorIndicator.className = colorIndicator.className.replace(/\bdegree-[1-7]\b/g, '');
+        
         if (orderIndex > -1) {
+            // Show order number
             orderLabel.textContent = orderIndex + 1;
             orderLabel.style.display = 'block';
+            
+            // Apply color based on selection order (orderIndex + 1 for 1-based degree colors)
+            colorIndicator.classList.add(`degree-${orderIndex + 1}`);
         } else {
+            // Hide order number and apply original degree color
             orderLabel.style.display = 'none';
+            colorIndicator.classList.add(`degree-${index + 1}`);
         }
     }
 }
